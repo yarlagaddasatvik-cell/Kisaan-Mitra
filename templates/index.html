@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiMitra (कृषि मित्र) - AI Farmer Support & Problem Solving Ecosystem</title>
+    <meta name="description" content="Comprehensive smart agricultural problem-solving platform: AI Crop Doctor, Soil Health Recommender, Fertilizer Calculator, Mandi Prices, Weather Advisory, Govt Schemes & Kisan AI Voice Chatbot.">
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&family=Yantramanav:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="light-mode" data-lang="en">
+
+    <!-- Top Emergency Advisory Ticker -->
+    <div class="top-announcement-bar">
+        <div class="ticker-wrapper">
+            <span class="ticker-badge"><i class="fa-solid fa-triangle-exclamation"></i> <span class="trans" data-en="Agro Alert" data-hi="कृषि अलर्ट">Agro Alert</span></span>
+            <div class="ticker-text" id="top-ticker-text">
+                🌾 <span class="trans" data-en="High humidity alert in North & Central India: Keep preventive fungicide ready for Paddy Blast and Late Blight." data-hi="उत्तर व मध्य भारत में उच्च आर्द्रता चेतावनी: धान में ब्लास्ट और टमाटर में झुलसा रोग हेतु फफूंदनाशक तैयार रखें।">High humidity alert in North & Central India: Keep preventive fungicide ready for Paddy Blast and Late Blight.</span>
+                &nbsp;|&nbsp; 📞 <span class="trans" data-en="Kisan Call Centre Toll-Free: 1800-180-1551 (24x7 Support)" data-hi="किसान कॉल सेंटर टोल-फ्री: 1800-180-1551 (24x7 सेवा)">Kisan Call Centre Toll-Free: 1800-180-1551 (24x7 Support)</span>
+                &nbsp;|&nbsp; ☀️ <span class="trans" data-en="PM-KUSUM Solar Pump Phase-3 applications now open in state portals." data-hi="पीएम-कुसुम सोलर पंप फेज-3 के आवेदन राज्य पोर्टलों पर शुरू।">PM-KUSUM Solar Pump Phase-3 applications now open in state portals.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#overview" class="brand-logo" onclick="switchTab('overview')">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>KrishiMitra <span class="hi-sub">कृषि मित्र</span></h1>
+                    <p class="tagline trans" data-en="AI Farmer Support & Problem Solving" data-hi="स्मार्ट किसान सहायक व कृषि समाधान">AI Farmer Support & Problem Solving</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="desktop-nav">
+                <button class="nav-btn active" onclick="switchTab('overview')" id="nav-overview">
+                    <i class="fa-solid fa-house"></i> <span class="trans" data-en="Home" data-hi="होम">Home</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('crop-doctor')" id="nav-crop-doctor">
+                    <i class="fa-solid fa-stethoscope"></i> <span class="trans" data-en="Crop Doctor" data-hi="क्रॉप डॉक्टर">Crop Doctor</span>
+                    <span class="pill-badge-pulse">AI</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('soil-recommender')" id="nav-soil-recommender">
+                    <i class="fa-solid fa-flask"></i> <span class="trans" data-en="Soil & Crops" data-hi="मृदा व फसल">Soil & Crops</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('fertilizer-calc')" id="nav-fertilizer-calc">
+                    <i class="fa-solid fa-calculator"></i> <span class="trans" data-en="Fertilizer Calc" data-hi="उर्वरक गणक">Fertilizer Calc</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('mandi-tracker')" id="nav-mandi-tracker">
+                    <i class="fa-solid fa-chart-line"></i> <span class="trans" data-en="Mandi Prices" data-hi="मंडी भाव">Mandi Prices</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('weather-advisory')" id="nav-weather-advisory">
+                    <i class="fa-solid fa-cloud-sun-rain"></i> <span class="trans" data-en="Weather" data-hi="मौसम सलाह">Weather</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('schemes')" id="nav-schemes">
+                    <i class="fa-solid fa-building-columns"></i> <span class="trans" data-en="Govt Schemes" data-hi="योजनाएं">Govt Schemes</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('forum')" id="nav-forum">
+                    <i class="fa-solid fa-comments"></i> <span class="trans" data-en="Community Q&A" data-hi="किसान चौपाल">Community Q&A</span>
+                </button>
+                <button class="nav-btn" onclick="switchTab('agri-centers')" id="nav-agri-centers">
+                    <i class="fa-solid fa-tractor"></i> <span class="trans" data-en="Rentals & KVK" data-hi="यंत्र व केवीके">Rentals & KVK</span>
+                </button>
+            </nav>
+
+            <!-- Action Controls: Lang Switcher, Theme Toggle, Voice Assist -->
+            <div class="header-actions">
+                <!-- Language Switcher -->
+                <div class="lang-switch-container">
+                    <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" id="btn-hi" onclick="setLanguage('hi')">हिन्दी</button>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button class="icon-tool-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <!-- Kisan AI Floating Trigger -->
+                <button class="btn btn-emerald-gradient btn-ai-chat" onclick="openChatModal()">
+                    <i class="fa-solid fa-robot"></i> <span class="trans" data-en="Kisan AI Assistant" data-hi="किसान एआई">Kisan AI</span>
+                    <span class="live-dot"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Main Container -->
+    <main class="app-body">
+
+        <!-- ==================== TAB 1: OVERVIEW DASHBOARD ==================== -->
+        <section id="tab-overview" class="app-tab-content active">
+            <!-- Hero Banner -->
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-wheat-awn"></i> <span class="trans" data-en="Empowering 140M+ Indian Farmers with Smart Technology" data-hi="भारतीय किसानों हेतु समर्पित स्मार्ट कृषि समाधान मंच">Empowering 140M+ Indian Farmers with Smart Technology</span>
+                    </div>
+                    <h2 class="hero-title">
+                        <span class="trans" data-en="Solve Crop Diseases, Maximize Yield & Secure Fair Prices" data-hi="फसल के रोगों का तुरंत सटीक समाधान, बेहतर पैदावार और सही मंडी भाव">Solve Crop Diseases, Maximize Yield & Secure Fair Prices</span>
+                    </h2>
+                    <p class="hero-subtitle trans" data-en="Instant AI crop diagnosis, scientific soil nutrition planning, live APMC mandi prices, weather-linked spray advisories, and direct access to government subsidies." data-hi="पत्ती की फोटो से तुरंत रोग पहचान, मिट्टी अनुसार उर्वरक की सही खुराक, लाइव मंडी भाव, मौसम आधारित स्प्रे सलाह और सरकारी योजनाओं की पूरी जानकारी।">
+                        Instant AI crop diagnosis, scientific soil nutrition planning, live APMC mandi prices, weather-linked spray advisories, and direct access to government subsidies.
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <button class="btn btn-primary-hero" onclick="switchTab('crop-doctor')">
+                            <i class="fa-solid fa-camera"></i> <span class="trans" data-en="Diagnose Crop Disease" data-hi="फसल रोग की जांच करें">Diagnose Crop Disease</span>
+                        </button>
+                        <button class="btn btn-secondary-hero" onclick="switchTab('soil-recommender')">
+                            <i class="fa-solid fa-seedling"></i> <span class="trans" data-en="Smart Crop Recommender" data-hi="मिट्टी अनुसार फसल चुनें">Smart Crop Recommender</span>
+                        </button>
+                        <button class="btn btn-outline-hero" onclick="openVoiceQuery()">
+                            <i class="fa-solid fa-microphone"></i> <span class="trans" data-en="Voice Assistance" data-hi="बोलकर पूछें">Voice Assistance</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Metrics Strip -->
+                    <div class="quick-stats-strip">
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-virus-slash"></i>
+                            <div>
+                                <h4 id="stat-diseases">25+</h4>
+                                <span class="trans" data-en="Crop Diseases Solved" data-hi="रोगों का जैविक/रासायनिक निदान">Crop Diseases Solved</span>
+                            </div>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <div>
+                                <h4 id="stat-mandis">15+</h4>
+                                <span class="trans" data-en="Live Mandi Markets" data-hi="लाइव कृषि मंडियां">Live Mandi Markets</span>
+                            </div>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-landmark"></i>
+                            <div>
+                                <h4 id="stat-schemes">6+</h4>
+                                <span class="trans" data-en="Govt Subsidy Portals" data-hi="सरकारी योजनाएं व सब्सिडी">Govt Subsidy Portals</span>
+                            </div>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <div>
+                                <h4>1800-180-1551</h4>
+                                <span class="trans" data-en="24x7 Kisan Call Centre" data-hi="किसान कॉल सेंटर टोल फ्री">24x7 Kisan Call Centre</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Quick Weather & Agro Advisory Card -->
+                <div class="hero-weather-card">
+                    <div class="weather-widget-header">
+                        <div>
+                            <span class="location-tag"><i class="fa-solid fa-location-dot"></i> <span id="dash-weather-loc">Indore / Central Zone</span></span>
+                            <h3 id="dash-weather-temp">31°C</h3>
+                            <p id="dash-weather-condition" class="condition-text">Partly Cloudy</p>
+                        </div>
+                        <div class="weather-big-icon">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                        </div>
+                    </div>
+
+                    <div class="weather-micro-grid">
+                        <div class="w-item">
+                            <i class="fa-solid fa-droplet"></i>
+                            <div>
+                                <small class="trans" data-en="Humidity" data-hi="नमी">Humidity</small>
+                                <strong>68%</strong>
+                            </div>
+                        </div>
+                        <div class="w-item">
+                            <i class="fa-solid fa-cloud-rain"></i>
+                            <div>
+                                <small class="trans" data-en="Rain Probability" data-hi="बारिश की संभावना">Rain Prob</small>
+                                <strong>20%</strong>
+                            </div>
+                        </div>
+                        <div class="w-item">
+                            <i class="fa-solid fa-wind"></i>
+                            <div>
+                                <small class="trans" data-en="Wind" data-hi="हवा की गति">Wind</small>
+                                <strong>12 km/h</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dash-spray-advisory">
+                        <div class="spray-badge"><i class="fa-solid fa-circle-check"></i> <span class="trans" data-en="Pesticide Spray Window: Favorable" data-hi="स्प्रे अनुकूलता: उत्तम समय">Pesticide Spray Window: Favorable</span></div>
+                        <p class="trans" data-en="Wind speed is low and no rain for 36 hrs. Suitable for foliar sprays." data-hi="हवा शांत है व अगले 36 घंटे बारिश नहीं। पर्णीय छिड़काव हेतु उपयुक्त।">Wind speed is low and no rain for 36 hrs. Suitable for foliar sprays.</p>
+                    </div>
+
+                    <button class="btn-link-weather" onclick="switchTab('weather-advisory')">
+                        <span class="trans" data-en="View 7-Day Farm Forecast & Alerts" data-hi="7-दिवसीय मौसम पूर्वानुमान देखें">View 7-Day Farm Forecast & Alerts</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Feature Cards Grid -->
+            <div class="section-container">
+                <div class="section-title-wrap">
+                    <h3 class="section-heading trans" data-en="Agricultural Problem Solving Tools" data-hi="किसान सहायता एवं समस्या समाधान टूल्स">Agricultural Problem Solving Tools</h3>
+                    <p class="section-desc trans" data-en="Select any tool below to diagnose diseases, optimize fertilizers, track market rates, or apply for government schemes." data-hi="फसल रोग पहचान, खाद की सही मात्रा, मंडी भाव या सरकारी योजनाओं हेतु नीचे दिए गए विकल्प चुनें।">Select any tool below to diagnose diseases, optimize fertilizers, track market rates, or apply for government schemes.</p>
+                </div>
+
+                <div class="tools-grid">
+                    <!-- Tool 1 -->
+                    <div class="tool-card tool-doctor" onclick="switchTab('crop-doctor')">
+                        <div class="tool-icon-circle">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <div class="tool-content">
+                            <h4 class="trans" data-en="AI Crop Doctor" data-hi="एआई फसल डॉक्टर">AI Crop Doctor</h4>
+                            <p class="trans" data-en="Upload leaf photo or choose symptoms for instant diagnosis, organic remedies & exact chemical dosages." data-hi="पत्ती की फोटो या लक्षणों से तुरंत रोग की पहचान करें और जैविक व रासायनिक उपचार पाएं।">Upload leaf photo or choose symptoms for instant diagnosis, organic remedies & exact chemical dosages.</p>
+                            <span class="tool-action-link"><span class="trans" data-en="Diagnose Crop" data-hi="रोग निदान करें">Diagnose Crop</span> <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2 -->
+                    <div class="tool-card tool-soil" onclick="switchTab('soil-recommender')">
+                        <div class="tool-icon-circle">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <div class="tool-content">
+                            <h4 class="trans" data-en="Soil & Crop Advisor" data-hi="मृदा एवं फसल चयन">Soil & Crop Advisor</h4>
+                            <p class="trans" data-en="Input soil N-P-K, pH, temperature & rainfall to get ranked crop recommendations and soil health corrections." data-hi="अपनी मिट्टी के N-P-K व pH अनुसार सबसे अधिक मुनाफा देने वाली फसलों की सिफारिश पाएं।">Input soil N-P-K, pH, temperature & rainfall to get ranked crop recommendations and soil health corrections.</p>
+                            <span class="tool-action-link"><span class="trans" data-en="Test Soil Parameters" data-hi="फसल सिफारिश देखें">Test Soil Parameters</span> <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Tool 3 -->
+                    <div class="tool-card tool-fertilizer" onclick="switchTab('fertilizer-calc')">
+                        <div class="tool-icon-circle">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div class="tool-content">
+                            <h4 class="trans" data-en="Fertilizer & Dosage Calc" data-hi="उर्वरक एवं खुराक गणक">Fertilizer & Dosage Calc</h4>
+                            <p class="trans" data-en="Calculate exact bags of Urea, DAP, MOP and Zinc with split basal and top-dressing irrigation schedule." data-hi="अपने खेत के क्षेत्रफल अनुसार यूरिया, डीएपी, पोटाश व जिंक के सटीक बैग और देने का समय जानें।">Calculate exact bags of Urea, DAP, MOP and Zinc with split basal and top-dressing irrigation schedule.</p>
+                            <span class="tool-action-link"><span class="trans" data-en="Calculate Bags" data-hi="खाद की मात्रा निकालें">Calculate Bags</span> <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Tool 4 -->
+                    <div class="tool-card tool-mandi" onclick="switchTab('mandi-tracker')">
+                        <div class="tool-icon-circle">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                        </div>
+                        <div class="tool-content">
+                            <h4 class="trans" data-en="Live Mandi (APMC) Rates" data-hi="लाइव मंडी भाव व रुझान">Live Mandi (APMC) Rates</h4>
+                            <p class="trans" data-en="Track daily modal prices, 7-day price fluctuations, MSP benchmarks, and best time-to-sell advisories." data-hi="देश की प्रमुख मंडियों के आज के भाव, 7-दिवसीय मूल्य ग्राफ और MSP तुलना देखें।">Track daily modal prices, 7-day price fluctuations, MSP benchmarks, and best time-to-sell advisories.</p>
+                            <span class="tool-action-link"><span class="trans" data-en="Check Market Prices" data-hi="मंडी भाव देखें">Check Market Prices</span> <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Tool 5 -->
+                    <div class="tool-card tool-schemes" onclick="switchTab('schemes')">
+                        <div class="tool-icon-circle">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <div class="tool-content">
+                            <h4 class="trans" data-en="Govt Schemes & Subsidies" data-hi="सरकारी योजनाएं व अनुदान">Govt Schemes & Subsidies</h4>
+                            <p class="trans" data-en="PM-Kisan, Crop Insurance (PMFBY), Solar KUSUM, Drip Irrigation & Tractor subsidy eligibility checker." data-hi="पीएम-किसान, फसल बीमा, सोलर पंप (कुसुम) और ट्रैक्टर सब्सिडी की पात्रता व आवेदन विधि।">PM-Kisan, Crop Insurance (PMFBY), Solar KUSUM, Drip Irrigation & Tractor subsidy eligibility checker.</p>
+                            <span class="tool-action-link"><span class="trans" data-en="Check Eligibility" data-hi="पात्रता जांचें">Check Eligibility</span> <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Tool 6 -->
+                    <div class="tool-card tool-forum" onclick="switchTab('forum')">
+                        <div class="tool-icon-circle">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="tool-content">
+                            <h4 class="trans" data-en="Community Problem Solver" data-hi="किसान चौपाल (सवाल-जवाब)">Community Problem Solver</h4>
+                            <p class="trans" data-en="Ask farm questions with photos, receive answers from verified agronomists, and browse solved cases." data-hi="अपनी समस्या की फोटो डालकर सवाल पूछें और कृषि वैज्ञानिकों से प्रमाणित उत्तर पाएं।">Ask farm questions with photos, receive answers from verified agronomists, and browse solved cases.</p>
+                            <span class="tool-action-link"><span class="trans" data-en="Join Farmer Forum" data-hi="चौपाल में जाएं">Join Farmer Forum</span> <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Mandi Ticker Preview Table -->
+            <div class="section-container">
+                <div class="card-glass shadow-box">
+                    <div class="card-header-flex">
+                        <div>
+                            <h3 class="card-title trans" data-en="Today's Key Commodity Mandi Rates (₹ / Quintal)" data-hi="आज के प्रमुख फसलों के मंडी भाव (₹ / क्विंटल)">Today's Key Commodity Mandi Rates (₹ / Quintal)</h3>
+                            <p class="card-subtitle trans" data-en="Updated live from major APMC agricultural markets" data-hi="प्रमुख कृषि उपज मंडियों से आज के वास्तविक भाव">Updated live from major APMC agricultural markets</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline" onclick="switchTab('mandi-tracker')">
+                            <span class="trans" data-en="View All Markets & Charts" data-hi="सभी मंडियां व ग्राफ देखें">View All Markets & Charts</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="krishi-table">
+                            <thead>
+                                <tr>
+                                    <th class="trans" data-en="State & Market" data-hi="राज्य व मंडी">State & Market</th>
+                                    <th class="trans" data-en="Commodity & Variety" data-hi="फसल व किस्म">Commodity & Variety</th>
+                                    <th class="trans" data-en="Min - Max Price" data-hi="न्यूनतम - अधिकतम भाव">Min - Max Price</th>
+                                    <th class="trans" data-en="Modal Price (Today)" data-hi="मॉडल भाव (आज)">Modal Price (Today)</th>
+                                    <th class="trans" data-en="MSP Benchmark" data-hi="सरकारी समर्थन मूल्य (MSP)">MSP Benchmark</th>
+                                    <th class="trans" data-en="7-Day Trend" data-hi="7 दिवसीय रुझान">7-Day Trend</th>
+                                </tr>
+                            </thead>
+                            <tbody id="home-mandi-tbody">
+                                <!-- Populated dynamically by app.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 2: AI CROP DOCTOR ==================== -->
+        <section id="tab-crop-doctor" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-stethoscope"></i></div>
+                <div>
+                    <h2 class="trans" data-en="AI Crop Doctor & Disease Diagnostic Hub" data-hi="एआई फसल डॉक्टर एवं रोग निदान केंद्र">AI Crop Doctor & Disease Diagnostic Hub</h2>
+                    <p class="trans" data-en="Detect diseases, insect pests, and nutrient deficiencies with scientific organic and chemical remedies." data-hi="पत्तियों के रोग, कीट प्रकोप और पोषक तत्वों की कमी की पहचान करें और सटीक दवा व जैविक उपचार जानें।">Detect diseases, insect pests, and nutrient deficiencies with scientific organic and chemical remedies.</p>
+                </div>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- Left Input Panel -->
+                <div class="card-glass">
+                    <h3 class="card-title trans" data-en="Step 1: Input Crop & Symptoms" data-hi="चरण 1: फसल और लक्षण दर्ज करें">Step 1: Input Crop & Symptoms</h3>
+
+                    <form id="diagnose-form" onsubmit="event.preventDefault(); runDiagnosis();">
+                        <!-- Crop Selector -->
+                        <div class="form-group">
+                            <label class="form-label trans" data-en="Select Your Crop:" data-hi="अपनी फसल चुनें:">Select Your Crop:</label>
+                            <select id="diag-crop" class="form-control" onchange="updateSymptomPresets()">
+                                <option value="" class="trans" data-en="-- All Crops / Select Crop --" data-hi="-- सभी फसलें / फसल चुनें --">-- All Crops / Select Crop --</option>
+                                <option value="Rice / Paddy">🌾 Rice / Paddy (धान)</option>
+                                <option value="Wheat">🌾 Wheat (गेहूँ)</option>
+                                <option value="Cotton">☁️ Cotton (कपास)</option>
+                                <option value="Tomato">🍅 Tomato (टमाटर)</option>
+                                <option value="Potato">🥔 Potato (आलू)</option>
+                                <option value="Sugarcane">🎋 Sugarcane (गन्ना)</option>
+                                <option value="Mustard / Rapeseed">🌼 Mustard / Rapeseed (सरसों)</option>
+                                <option value="Chili / Pepper">🌶️ Chili / Pepper (मिर्च)</option>
+                                <option value="Maize / Corn">🌽 Maize / Corn (मक्का)</option>
+                                <option value="Groundnut / Peanut">🥜 Groundnut / Peanut (मूंगफली)</option>
+                                <option value="Soybean">🌱 Soybean (सोयाबीन)</option>
+                                <option value="Onion">🧅 Onion (प्याज)</option>
+                            </select>
+                        </div>
+
+                        <!-- Image Upload / Camera Dropzone -->
+                        <div class="form-group">
+                            <label class="form-label trans" data-en="Upload Leaf / Plant Photo or Choose Sample:" data-hi="पत्ती/पौधे की फोटो अपलोड करें या नमूना चुनें:">Upload Leaf / Plant Photo or Choose Sample:</label>
+                            <div class="dropzone-box" id="dropzone" onclick="document.getElementById('leaf-file-input').click()">
+                                <input type="file" id="leaf-file-input" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
+                                <div id="dropzone-content">
+                                    <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                                    <p class="drop-text trans" data-en="Drag & drop diseased leaf photo, or click to browse" data-hi="रोग ग्रस्त पत्ती की फोटो यहाँ खींचें या क्लिक करके चुनें">Drag & drop diseased leaf photo, or click to browse</p>
+                                    <span class="drop-hint trans" data-en="Supports JPG, PNG, WEBP (Camera capture supported)" data-hi="मोबाइल कैमरा या गैलरी से फोटो चुनें">Supports JPG, PNG, WEBP</span>
+                                </div>
+                                <div id="dropzone-preview" style="display:none;">
+                                    <img id="preview-img" src="" alt="Uploaded Leaf Preview" class="leaf-preview-img">
+                                    <button type="button" class="btn btn-sm btn-danger btn-remove-img" onclick="event.stopPropagation(); removeUploadedImage();">
+                                        <i class="fa-solid fa-trash"></i> <span class="trans" data-en="Remove Photo" data-hi="फोटो हटाएं">Remove</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Sample Quick Test Buttons -->
+                            <div class="sample-images-row">
+                                <span class="sample-label trans" data-en="Quick Test Samples:" data-hi="त्वरित जांच नमूने:">Quick Test Samples:</span>
+                                <button type="button" class="btn-sample-tag" onclick="loadSampleCase('wheat_rust')">🌾 Wheat Yellow Rust</button>
+                                <button type="button" class="btn-sample-tag" onclick="loadSampleCase('rice_blast')">🌾 Paddy Blast</button>
+                                <button type="button" class="btn-sample-tag" onclick="loadSampleCase('tomato_blight')">🍅 Tomato Late Blight</button>
+                                <button type="button" class="btn-sample-tag" onclick="loadSampleCase('cotton_bollworm')">☁️ Pink Bollworm</button>
+                                <button type="button" class="btn-sample-tag" onclick="loadSampleCase('tomato_curl')">🍅 Leaf Curl Virus</button>
+                            </div>
+                        </div>
+
+                        <!-- Symptom Checkboxes -->
+                        <div class="form-group">
+                            <label class="form-label trans" data-en="Select Observed Symptoms:" data-hi="पौधे में दिखने वाले लक्षण चुनें:">Select Observed Symptoms:</label>
+                            <div class="symptoms-chip-container" id="symptoms-chips">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Additional Description -->
+                        <div class="form-group">
+                            <label class="form-label trans" data-en="Describe the Problem (Optional / Voice Input):" data-hi="समस्या का विवरण (वैकल्पिक / बोलकर लिखें):">Describe the Problem (Optional):</label>
+                            <div class="input-with-voice">
+                                <textarea id="diag-desc" class="form-control" rows="2" placeholder="e.g. Yellow linear powdery lines on wheat leaves with stunted growth..."></textarea>
+                                <button type="button" class="btn-mic-inside" onclick="startVoiceToText('diag-desc')" title="Speak in Hindi/English">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-full" id="btn-diagnose">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> <span class="trans" data-en="Analyze & Diagnose Disease" data-hi="रोग का विश्लेषण एवं निदान करें">Analyze & Diagnose Disease</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Diagnosis Output Panel -->
+                <div class="card-glass" id="diagnosis-result-container">
+                    <div class="empty-state" id="diag-empty-state">
+                        <i class="fa-solid fa-seedling empty-icon"></i>
+                        <h4 class="trans" data-en="No Crop Analyzed Yet" data-hi="निदान रिपोर्ट यहाँ प्रदर्शित होगी">No Crop Analyzed Yet</h4>
+                        <p class="trans" data-en="Select a crop, upload a leaf picture, or pick a sample above to view AI diagnostic insights, organic remedies, and chemical spray dosages." data-hi="बाईं ओर फसल चुनें, फोटो अपलोड करें या त्वरित नमूना चुनकर 'रोग विश्लेषण' पर क्लिक करें।">Select a crop, upload a leaf picture, or pick a sample above to view AI diagnostic insights, organic remedies, and chemical spray dosages.</p>
+                    </div>
+
+                    <!-- Diagnosis Result Card (Shown after analysis) -->
+                    <div id="diag-result-card" style="display:none;">
+                        <div class="result-header-box">
+                            <div class="badge-row">
+                                <span class="badge-confidence" id="res-confidence">96% Match Confidence</span>
+                                <span class="badge-severity" id="res-severity">Critical Severity</span>
+                                <span class="badge-category" id="res-category">Fungal Disease</span>
+                            </div>
+                            <h3 class="disease-res-title" id="res-disease-name">Yellow / Stripe Rust (Puccinia striiformis)</h3>
+                            <h4 class="disease-res-hi" id="res-disease-name-hi">पीला रतुआ (हल्दी रोग)</h4>
+                            <p class="crop-res-tag"><i class="fa-solid fa-wheat-awn"></i> <span id="res-crop-name">Wheat</span></p>
+                        </div>
+
+                        <!-- Audio Readout Controller -->
+                        <div class="audio-prescription-bar">
+                            <button class="btn btn-sm btn-emerald" onclick="speakPrescription()">
+                                <i class="fa-solid fa-volume-high"></i> <span class="trans" data-en="Listen Diagnosis (Audio)" data-hi="दवा पर्ची सुनें (आवाज में)">Listen Diagnosis (Audio)</span>
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="printPrescription()">
+                                <i class="fa-solid fa-print"></i> <span class="trans" data-en="Print Prescription Slip" data-hi="दवा पर्ची प्रिंट करें">Print Prescription Slip</span>
+                            </button>
+                        </div>
+
+                        <!-- Symptoms Detail -->
+                        <div class="res-block">
+                            <h5 class="block-title"><i class="fa-solid fa-circle-exclamation"></i> <span class="trans" data-en="Identified Symptoms & Damage" data-hi="रोग के मुख्य लक्षण व क्षति">Identified Symptoms & Damage</span></h5>
+                            <p id="res-symptoms" class="res-text"></p>
+                        </div>
+
+                        <!-- Chemical Treatment -->
+                        <div class="res-block chemical-block">
+                            <h5 class="block-title text-danger"><i class="fa-solid fa-flask-round-poison"></i> <span class="trans" data-en="Recommended Chemical Treatment & Dosage" data-hi="रासायनिक उपचार एवं स्प्रे खुराक">Recommended Chemical Treatment & Dosage</span></h5>
+                            <div class="treatment-highlight" id="res-chemical"></div>
+                            <div class="dosage-guideline-box">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <div>
+                                    <strong><span class="trans" data-en="Application Guideline:" data-hi="स्प्रे करने के नियम:">Application Guideline:</span></strong>
+                                    <span id="res-dosage"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Organic Treatment -->
+                        <div class="res-block organic-block">
+                            <h5 class="block-title text-success"><i class="fa-solid fa-leaf"></i> <span class="trans" data-en="Natural & Organic Bio-Remedies" data-hi="जैविक एवं प्राकृतिक देशी उपचार">Natural & Organic Bio-Remedies</span></h5>
+                            <div class="treatment-highlight" id="res-organic"></div>
+                        </div>
+
+                        <!-- Prevention Measures -->
+                        <div class="res-block prevention-block">
+                            <h5 class="block-title text-primary"><i class="fa-solid fa-shield-halved"></i> <span class="trans" data-en="Future Prevention & Cultural Practices" data-hi="भविष्य में रोकथाम व सुरक्षा उपाय">Future Prevention & Cultural Practices</span></h5>
+                            <p id="res-prevention" class="res-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Encyclopedia Catalog -->
+            <div class="section-container mt-4">
+                <div class="section-title-wrap">
+                    <h3 class="section-heading trans" data-en="Agricultural Disease Encyclopedia & Knowledge Base" data-hi="प्रमुख फसली रोग निर्देशिका एवं ज्ञानकोश">Agricultural Disease Encyclopedia & Knowledge Base</h3>
+                    <p class="section-desc trans" data-en="Browse all 25+ catalogued crop diseases with organic and chemical cure protocols." data-hi="सभी प्रमुख फसलों के रोगों, कीटों और उपचारों की संपूर्ण सूची ब्राउज़ करें।">Browse all 25+ catalogued crop diseases with organic and chemical cure protocols.</p>
+                </div>
+
+                <div class="filter-search-bar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="disease-catalog-search" class="form-control" placeholder="Search disease, symptoms, or crop (e.g. Blight, Rust, Worm)..." oninput="filterDiseaseCatalog()">
+                    </div>
+                </div>
+
+                <div class="disease-cards-grid" id="disease-catalog-grid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 3: SOIL HEALTH & CROP RECOMMENDER ==================== -->
+        <section id="tab-soil-recommender" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-flask"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Soil Health & Smart Crop Recommendation Engine" data-hi="मृदा स्वास्थ्य एवं उपयुक्त फसल चयन प्रणाली">Soil Health & Smart Crop Recommendation Engine</h2>
+                    <p class="trans" data-en="Evaluate your soil N-P-K nutrients, pH value, and climate to discover highest-yielding profitable crops." data-hi="मिट्टी के पोषक तत्वों (N-P-K), pH मान व जलवायु के अनुसार सर्वाधिक पैदावार देने वाली उपयुक्त फसलें जानें।">Evaluate your soil N-P-K nutrients, pH value, and climate to discover highest-yielding profitable crops.</p>
+                </div>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- Left Soil Parameters Input -->
+                <div class="card-glass">
+                    <div class="card-header-flex">
+                        <h3 class="card-title trans" data-en="Soil & Climate Parameters" data-hi="मृदा एवं मौसम के आंकड़े">Soil & Climate Parameters</h3>
+                        <!-- Quick Presets -->
+                        <div class="dropdown-presets">
+                            <select id="soil-presets" class="form-control form-control-sm" onchange="applySoilPreset(this.value)">
+                                <option value="" class="trans" data-en="⚡ Apply Sample Preset" data-hi="⚡ नमूना डेटा चुनें">⚡ Apply Sample Preset</option>
+                                <option value="alluvial_fertile">Fertile Alluvial (Punjab/UP Plains)</option>
+                                <option value="black_cotton">Black Soil (MP/Maharashtra Cotton)</option>
+                                <option value="sandy_dry">Sandy Arid (Rajasthan Mustard)</option>
+                                <option value="acidic_red">Acidic Red Soil (South/East India)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <form id="soil-form" onsubmit="event.preventDefault(); runCropRecommendation();">
+                        <!-- Soil Type & Season -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label class="form-label trans" data-en="Soil Type:" data-hi="मिट्टी का प्रकार:">Soil Type:</label>
+                                <select id="soil-type" class="form-control">
+                                    <option value="Alluvial">Alluvial Soil (जलोढ़ दोमट)</option>
+                                    <option value="Black">Black Cotton Soil (काली मिट्टी)</option>
+                                    <option value="Red">Red & Yellow Soil (लाल मिट्टी)</option>
+                                    <option value="Sandy">Sandy Loam (रेतीली दोमट)</option>
+                                    <option value="Clay">Clay Loam (चिकनी मिट्टी)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label trans" data-en="Target Sowing Season:" data-hi="बुवाई का मौसम:">Target Sowing Season:</label>
+                                <select id="soil-season" class="form-control">
+                                    <option value="All">All Seasons (सभी मौसम)</option>
+                                    <option value="Kharif">Kharif / Monsoon (खरीफ / वर्षा)</option>
+                                    <option value="Rabi">Rabi / Winter (रबी / सर्दी)</option>
+                                    <option value="Zaid">Zaid / Summer (जायद / गर्मी)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Sliders for N, P, K, pH -->
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <span class="trans" data-en="Nitrogen (N) - Available kg/ha:" data-hi="नाइट्रोजन (N) - किग्रा/हेक्टेयर:">Nitrogen (N) - kg/ha:</span>
+                                <strong id="val-n" class="slider-val">90 kg/ha</strong>
+                            </div>
+                            <input type="range" id="input-n" min="10" max="250" value="90" class="range-slider" oninput="document.getElementById('val-n').innerText = this.value + ' kg/ha'">
+                            <div class="range-hints"><span>Low (10)</span><span>Medium (100)</span><span>High (250)</span></div>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <span class="trans" data-en="Phosphorus (P2O5) - Available kg/ha:" data-hi="फास्फोरस (P) - किग्रा/हेक्टेयर:">Phosphorus (P) - kg/ha:</span>
+                                <strong id="val-p" class="slider-val">45 kg/ha</strong>
+                            </div>
+                            <input type="range" id="input-p" min="5" max="120" value="45" class="range-slider" oninput="document.getElementById('val-p').innerText = this.value + ' kg/ha'">
+                            <div class="range-hints"><span>Low (5)</span><span>Medium (40)</span><span>High (120)</span></div>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <span class="trans" data-en="Potassium (K2O) - Available kg/ha:" data-hi="पोटाश (K) - किग्रा/हेक्टेयर:">Potassium (K) - kg/ha:</span>
+                                <strong id="val-k" class="slider-val">50 kg/ha</strong>
+                            </div>
+                            <input type="range" id="input-k" min="10" max="200" value="50" class="range-slider" oninput="document.getElementById('val-k').innerText = this.value + ' kg/ha'">
+                            <div class="range-hints"><span>Low (10)</span><span>Medium (50)</span><span>High (200)</span></div>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <span class="trans" data-en="Soil pH Level (Acidity / Alkalinity):" data-hi="मृदा pH मान (अम्लीयता / क्षारीयता):">Soil pH Level:</span>
+                                <strong id="val-ph" class="slider-val">6.8 (Neutral)</strong>
+                            </div>
+                            <input type="range" id="input-ph" min="4.0" max="9.5" step="0.1" value="6.8" class="range-slider" oninput="updatePhLabel(this.value)">
+                            <div class="range-hints"><span>Acidic (< 5.5)</span><span>Neutral (6.5-7.5)</span><span>Alkaline (> 8.0)</span></div>
+                        </div>
+
+                        <!-- Climate Parameters -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label class="form-label trans" data-en="Avg Temperature (°C):" data-hi="औसत तापमान (°C):">Avg Temp (°C):</label>
+                                <input type="number" id="input-temp" class="form-control" value="26" min="5" max="50">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label trans" data-en="Annual / Season Rain (mm):" data-hi="वर्षा (मिमी):">Rainfall (mm):</label>
+                                <input type="number" id="input-rainfall" class="form-control" value="650" min="50" max="3000">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-full">
+                            <i class="fa-solid fa-sparkles"></i> <span class="trans" data-en="Calculate Best Matched Crops" data-hi="उपयुक्त फसलों की गणना करें">Calculate Best Matched Crops</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Soil Recommendation Results -->
+                <div class="card-glass" id="soil-results-container">
+                    <h3 class="card-title trans" data-en="Top Recommended Crops & Soil Diagnosis" data-hi="सर्वोत्तम अनुशंसित फसलें एवं मृदा स्वास्थ्य">Top Recommended Crops & Soil Diagnosis</h3>
+
+                    <!-- Soil Health Alerts Container -->
+                    <div id="soil-alerts-box"></div>
+
+                    <!-- Recommended Crops List -->
+                    <div id="recommended-crops-list" class="crops-rec-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 4: FERTILIZER & WATER CALCULATOR ==================== -->
+        <section id="tab-fertilizer-calc" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-calculator"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Fertilizer & Irrigation Dosage Calculator" data-hi="उर्वरक एवं सिंचाई खुराक गणक">Fertilizer & Irrigation Dosage Calculator</h2>
+                    <p class="trans" data-en="Compute exact commercial fertilizer bags (Urea, DAP, MOP, SSP, Zinc) and split application calendar for your land area." data-hi="अपने खेत के आकार अनुसार यूरिया, डीएपी, पोटाश व जिंक के सटीक बैग और सिंचाई कार्यक्रम की गणना करें।">Compute exact commercial fertilizer bags (Urea, DAP, MOP, SSP, Zinc) and split application calendar for your land area.</p>
+                </div>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- Left Input Form -->
+                <div class="card-glass">
+                    <h3 class="card-title trans" data-en="Field Area & Crop Selection" data-hi="खेत का क्षेत्रफल एवं फसल चयन">Field Area & Crop Selection</h3>
+
+                    <form id="fert-form" onsubmit="event.preventDefault(); runFertilizerCalculation();">
+                        <div class="form-group">
+                            <label class="form-label trans" data-en="Select Crop:" data-hi="फसल चुनें:">Select Crop:</label>
+                            <select id="fert-crop" class="form-control">
+                                <option value="Wheat">🌾 Wheat (गेहूँ)</option>
+                                <option value="Rice / Paddy">🌾 Rice / Paddy (धान)</option>
+                                <option value="Cotton">☁️ Cotton (कपास)</option>
+                                <option value="Tomato">🍅 Tomato (टमाटर)</option>
+                                <option value="Potato">🥔 Potato (आलू)</option>
+                                <option value="Sugarcane">🎋 Sugarcane (गन्ना)</option>
+                                <option value="Mustard">🌼 Mustard / Rapeseed (सरसों)</option>
+                                <option value="Chickpea">🌱 Chickpea / Gram (चना)</option>
+                                <option value="Maize">🌽 Maize / Corn (मक्का)</option>
+                                <option value="Groundnut">🥜 Groundnut (मूंगफली)</option>
+                                <option value="Soybean">🌱 Soybean (सोयाबीन)</option>
+                                <option value="Onion">🧅 Onion (प्याज)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label class="form-label trans" data-en="Field Area Size:" data-hi="क्षेत्रफल (संख्या):">Field Area Size:</label>
+                                <input type="number" id="fert-area" class="form-control" value="2" min="0.1" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label trans" data-en="Land Unit:" data-hi="माप इकाई:">Land Unit:</label>
+                                <select id="fert-unit" class="form-control">
+                                    <option value="Acre">Acres (एकड़)</option>
+                                    <option value="Hectare">Hectares (हेक्टेयर)</option>
+                                    <option value="Bigha (Standard)">Bigha (बीघा - 0.625 Acre)</option>
+                                    <option value="Guntha">Guntha (गुंठा - 0.025 Acre)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-full">
+                            <i class="fa-solid fa-calculator"></i> <span class="trans" data-en="Calculate Commercial Fertilizer Bags" data-hi="खाद के बैग की गणना करें">Calculate Commercial Fertilizer Bags</span>
+                        </button>
+                    </form>
+
+                    <!-- Fertilizer Standards Reference Box -->
+                    <div class="info-tip-box mt-3">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <div>
+                            <strong><span class="trans" data-en="Standard Bag Sizes:" data-hi="मानक बैग वजन:">Standard Bag Sizes:</span></strong>
+                            <span class="trans" data-en="Urea = 45 kg bag | DAP = 50 kg bag | MOP = 50 kg bag | SSP = 50 kg bag." data-hi="यूरिया = 45 किग्रा बैग | डीएपी = 50 किग्रा बैग | पोटाश = 50 किग्रा बैग।">Urea = 45 kg bag | DAP = 50 kg bag | MOP = 50 kg bag.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Calculation Summary Sheet -->
+                <div class="card-glass" id="fertilizer-result-card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title trans" data-en="Recommended Fertilizer Prescription" data-hi="उर्वरक पर्ची एवं खुराक योजना">Recommended Fertilizer Prescription</h3>
+                        <button class="btn btn-sm btn-outline" onclick="window.print()">
+                            <i class="fa-solid fa-print"></i> <span class="trans" data-en="Print" data-hi="प्रिंट">Print</span>
+                        </button>
+                    </div>
+
+                    <div id="fert-empty-state" class="empty-state">
+                        <i class="fa-solid fa-scale-balanced empty-icon"></i>
+                        <h4 class="trans" data-en="Enter Land Details & Calculate" data-hi="खेत का विवरण दर्ज कर गणना करें">Enter Land Details & Calculate</h4>
+                        <p class="trans" data-en="Select crop and acreage to receive detailed bag quantities, basal vs top-dressing timing, and cost estimates." data-hi="फसल और एकड़ चुनकर 'खाद के बैग की गणना करें' पर क्लिक करें।">Select crop and acreage to receive detailed bag quantities, basal vs top-dressing timing, and cost estimates.</p>
+                    </div>
+
+                    <div id="fert-result-content" style="display:none;">
+                        <!-- Fertilizer Combo A: DAP + Urea + MOP -->
+                        <div class="fert-plan-card">
+                            <div class="plan-header">
+                                <h4 class="trans" data-en="Recommended Option A: DAP + Urea + MOP Combo" data-hi="प्राथमिक विकल्प A: डीएपी + यूरिया + पोटाश मिश्रण">Recommended Option A: DAP + Urea + MOP Combo</h4>
+                                <span class="cost-tag" id="fert-cost">Est. ₹2,450</span>
+                            </div>
+
+                            <div class="fert-bags-grid">
+                                <div class="bag-card bag-dap">
+                                    <div class="bag-icon"><i class="fa-solid fa-box"></i></div>
+                                    <h5>DAP (18-46-0)</h5>
+                                    <h3 id="res-dap-bags">2.5 Bags</h3>
+                                    <small id="res-dap-kg">(125 kg)</small>
+                                </div>
+                                <div class="bag-card bag-urea">
+                                    <div class="bag-icon"><i class="fa-solid fa-box"></i></div>
+                                    <h5>Urea (46% N)</h5>
+                                    <h3 id="res-urea-bags">3.0 Bags</h3>
+                                    <small id="res-urea-kg">(135 kg)</small>
+                                </div>
+                                <div class="bag-card bag-mop">
+                                    <div class="bag-icon"><i class="fa-solid fa-box"></i></div>
+                                    <h5>MOP Potash (60% K)</h5>
+                                    <h3 id="res-mop-bags">0.8 Bags</h3>
+                                    <small id="res-mop-kg">(40 kg)</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Split Application Calendar -->
+                        <div class="res-block mt-3">
+                            <h5 class="block-title"><i class="fa-solid fa-calendar-days"></i> <span class="trans" data-en="Scientific Split Application Schedule" data-hi="खाद देने का समय व चरण (विभाजन)">Scientific Split Application Schedule</span></h5>
+                            <div class="timeline-schedule" id="fert-splits-text"></div>
+                        </div>
+
+                        <!-- Irrigation Water Requirement -->
+                        <div class="res-block mt-2">
+                            <h5 class="block-title"><i class="fa-solid fa-droplet"></i> <span class="trans" data-en="Irrigation & Water Requirement" data-hi="सिंचाई एवं जल प्रबंधन">Irrigation & Water Requirement</span></h5>
+                            <p id="fert-water-text" class="res-text"></p>
+                        </div>
+
+                        <!-- Micronutrient Checklist -->
+                        <div class="res-block mt-2">
+                            <h5 class="block-title"><i class="fa-solid fa-shield-virus"></i> <span class="trans" data-en="Essential Micronutrients & Bio-Boosters" data-hi="सूक्ष्म पोषक तत्व एवं बायो-बूस्टर">Essential Micronutrients & Bio-Boosters</span></h5>
+                            <ul class="micronutrient-list" id="fert-micronutrients-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 5: LIVE MANDI APMC MARKET TRACKER ==================== -->
+        <section id="tab-mandi-tracker" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Live Mandi (APMC) Market Prices & Trends" data-hi="लाइव मंडी भाव, MSP तुलना एवं मूल्य रुझान">Live Mandi (APMC) Market Prices & Trends</h2>
+                    <p class="trans" data-en="Track daily commodity modal prices, price fluctuations, MSP profit benchmarks, and optimal selling windows." data-hi="देश की प्रमुख कृषि उपज मंडियों के आज के भाव, न्यूनतम समर्थन मूल्य (MSP) से तुलना और 7-दिवसीय मूल्य ग्राफ।">Track daily commodity modal prices, price fluctuations, MSP profit benchmarks, and optimal selling windows.</p>
+                </div>
+            </div>
+
+            <!-- Filters Bar -->
+            <div class="filter-panel-card">
+                <div class="filter-controls-row">
+                    <div class="filter-item">
+                        <label class="form-label trans" data-en="Filter State:" data-hi="राज्य चुनें:">Filter State:</label>
+                        <select id="mandi-filter-state" class="form-control" onchange="loadMandiPrices()">
+                            <option value="All">All States (सभी राज्य)</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label class="form-label trans" data-en="Filter Commodity:" data-hi="फसल चुनें:">Filter Commodity:</label>
+                        <select id="mandi-filter-commodity" class="form-control" onchange="loadMandiPrices()">
+                            <option value="All">All Commodities (सभी फसलें)</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label class="form-label trans" data-en="Search Mandi / City:" data-hi="मंडी या शहर खोजें:">Search Mandi / City:</label>
+                        <input type="text" id="mandi-search-text" class="form-control" placeholder="e.g. Ludhiana, Indore, Nashik..." oninput="filterMandiTableClient()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart & Analytics Row -->
+            <div class="grid-2-col mt-3">
+                <!-- Mandi Table -->
+                <div class="card-glass">
+                    <h3 class="card-title trans" data-en="Today's Arrival Rates (₹ / Quintal)" data-hi="आज के आवक भाव (₹ / क्विंटल)">Today's Arrival Rates (₹ / Quintal)</h3>
+                    <div class="table-responsive">
+                        <table class="krishi-table">
+                            <thead>
+                                <tr>
+                                    <th class="trans" data-en="Market & State" data-hi="मंडी व राज्य">Market & State</th>
+                                    <th class="trans" data-en="Commodity" data-hi="फसल">Commodity</th>
+                                    <th class="trans" data-en="Modal Price" data-hi="मॉडल भाव">Modal Price</th>
+                                    <th class="trans" data-en="MSP Status" data-hi="MSP स्थिति">MSP Status</th>
+                                    <th class="trans" data-en="Action" data-hi="ग्राफ">Trend</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mandi-full-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Price Trend Chart -->
+                <div class="card-glass">
+                    <div class="card-header-flex">
+                        <div>
+                            <h3 class="card-title" id="chart-title">7-Day Price Fluctuation Trend</h3>
+                            <p class="card-subtitle" id="chart-subtitle">Click any commodity on the left to view price history</p>
+                        </div>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="mandiTrendChart"></canvas>
+                    </div>
+                    <div class="selling-advice-box mt-3" id="mandi-selling-advice">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <div>
+                            <strong><span class="trans" data-en="Market Advisory:" data-hi="बाजार परामर्श:">Market Advisory:</span></strong>
+                            <span id="selling-advice-text" class="trans" data-en="Wheat and Cotton prices are trading well above MSP. Favorable time for staggered sales." data-hi="गेहूं व कपास के भाव सरकारी समर्थन मूल्य (MSP) से ऊपर चल रहे हैं। किसानों हेतु माल बेचने का उपयुक्त समय।">Wheat and Cotton prices are trading well above MSP. Favorable time for staggered sales.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 6: WEATHER & AGRO-ADVISORY ==================== -->
+        <section id="tab-weather-advisory" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-cloud-sun-rain"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Agro-Weather Forecast & Hazard Warning System" data-hi="कृषि मौसम पूर्वानुमान एवं आपदा चेतावनी">Agro-Weather Forecast & Hazard Warning System</h2>
+                    <p class="trans" data-en="7-day localized farm weather forecasts with actionable pesticide spray advisories and flood/frost warnings." data-hi="7-दिवसीय कृषि मौसम पूर्वानुमान, कीटनाशक स्प्रे अनुकूलता अलर्ट और सिंचाई प्रबंधन सलाह।">7-day localized farm weather forecasts with actionable pesticide spray advisories and flood/frost warnings.</p>
+                </div>
+            </div>
+
+            <!-- Location Selector Bar -->
+            <div class="filter-panel-card">
+                <div class="filter-controls-row">
+                    <div class="filter-item">
+                        <label class="form-label trans" data-en="Select Agri District / Zone:" data-hi="कृषि जिला / क्षेत्र चुनें:">Select Agri District / Zone:</label>
+                        <select id="weather-location-select" class="form-control" onchange="loadWeatherAdvisory()">
+                            <option value="Indore, Madhya Pradesh">Indore, Madhya Pradesh (Malwa Plateau)</option>
+                            <option value="Ludhiana, Punjab">Ludhiana, Punjab (North Plains)</option>
+                            <option value="Nashik, Maharashtra">Nashik, Maharashtra (Western Ghats)</option>
+                            <option value="Karnal, Haryana">Karnal, Haryana (Trans-Gangetic)</option>
+                            <option value="Agra, Uttar Pradesh">Agra, Uttar Pradesh (Yamuna Basin)</option>
+                            <option value="Guntur, Andhra Pradesh">Guntur, Andhra Pradesh (Coastal Plains)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7-Day Forecast Cards Strip -->
+            <div class="section-container mt-3">
+                <h3 class="section-heading trans" data-en="7-Day Agricultural Weather Forecast" data-hi="7-दिवसीय कृषि मौसम पूर्वानुमान">7-Day Agricultural Weather Forecast</h3>
+                <div class="weather-forecast-grid" id="weather-forecast-cards">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Agro-Meteorological Advisories Section -->
+            <div class="section-container mt-4">
+                <h3 class="section-heading trans" data-en="Actionable Farm Management Advisories" data-hi="मौसम आधारित कृषि प्रबंधन सलाह">Actionable Farm Management Advisories</h3>
+                <div class="advisories-cards-grid" id="weather-advisories-list">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 7: GOVERNMENT SCHEMES & SUBSIDIES ==================== -->
+        <section id="tab-schemes" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-building-columns"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Government Schemes, Subsidies & Farmer Welfare" data-hi="सरकारी योजनाएं, अनुदान एवं किसान कल्याण">Government Schemes, Subsidies & Farmer Welfare</h2>
+                    <p class="trans" data-en="Check eligibility, required documents, subsidy percentages, and official direct application portals." data-hi="पीएम-किसान, फसल बीमा, सोलर पंप, ड्रिप सिंचाई और ट्रैक्टर सब्सिडी की पात्रता व आवेदन लिंक।">Check eligibility, required documents, subsidy percentages, and official direct application portals.</p>
+                </div>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="schemes-filter-row">
+                <button class="scheme-filter-btn active" onclick="filterSchemes('All', this)">
+                    <i class="fa-solid fa-layer-group"></i> <span class="trans" data-en="All Schemes" data-hi="सभी योजनाएं">All Schemes</span>
+                </button>
+                <button class="scheme-filter-btn" onclick="filterSchemes('Income Support', this)">
+                    <i class="fa-solid fa-hand-holding-dollar"></i> <span class="trans" data-en="Direct Income" data-hi="नकद आर्थिक सहायता">Direct Income</span>
+                </button>
+                <button class="scheme-filter-btn" onclick="filterSchemes('Insurance', this)">
+                    <i class="fa-solid fa-shield-heart"></i> <span class="trans" data-en="Crop Insurance" data-hi="फसल बीमा">Crop Insurance</span>
+                </button>
+                <button class="scheme-filter-btn" onclick="filterSchemes('Solar/Irrigation', this)">
+                    <i class="fa-solid fa-solar-panel"></i> <span class="trans" data-en="Solar & Drip Subsidy" data-hi="सोलर व ड्रिप सब्सिडी">Solar & Drip</span>
+                </button>
+                <button class="scheme-filter-btn" onclick="filterSchemes('Machinery', this)">
+                    <i class="fa-solid fa-tractor"></i> <span class="trans" data-en="Farm Machinery" data-hi="कृषि यंत्र अनुदान">Farm Machinery</span>
+                </button>
+                <button class="scheme-filter-btn" onclick="filterSchemes('Credit', this)">
+                    <i class="fa-solid fa-credit-card"></i> <span class="trans" data-en="KCC Loans" data-hi="केसीसी ऋण (4%)">KCC Loans</span>
+                </button>
+            </div>
+
+            <!-- Schemes Cards Grid -->
+            <div class="schemes-grid" id="schemes-cards-grid">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 8: COMMUNITY PROBLEM-SOLVING FORUM ==================== -->
+        <section id="tab-forum" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-comments"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Community Problem-Solving Forum & Farmer Chaupal" data-hi="किसान चौपाल एवं समस्या निवारण मंच">Community Problem-Solving Forum & Farmer Chaupal</h2>
+                    <p class="trans" data-en="Ask farming questions with photos, receive verified agronomist solutions, and help fellow farmers." data-hi="फसल की समस्या पर सवाल पूछें, कृषि वैज्ञानिकों से प्रमाणित समाधान पाएं और अन्य किसान भाइयों की मदद करें।">Ask farming questions with photos, receive verified agronomist solutions, and help fellow farmers.</p>
+                </div>
+            </div>
+
+            <!-- Top Actions Bar -->
+            <div class="forum-top-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="forum-search-input" class="form-control" placeholder="Search farmer queries, crops, or solutions..." oninput="filterForumPosts()">
+                </div>
+                <button class="btn btn-emerald" onclick="openNewPostModal()">
+                    <i class="fa-solid fa-plus"></i> <span class="trans" data-en="Ask a Question / Post Problem" data-hi="अपनी समस्या पूछें / पोस्ट करें">Ask a Question / Post Problem</span>
+                </button>
+            </div>
+
+            <!-- Forum Posts List -->
+            <div class="forum-posts-container" id="forum-posts-list">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 9: EQUIPMENT RENTAL & KVK DIRECTORY ==================== -->
+        <section id="tab-agri-centers" class="app-tab-content">
+            <div class="section-header-banner">
+                <div class="header-icon-badge"><i class="fa-solid fa-tractor"></i></div>
+                <div>
+                    <h2 class="trans" data-en="Agri Equipment Rental & Krishi Vigyan Kendra (KVK) Hub" data-hi="कृषि यंत्र किराया केंद्र एवं कृषि विज्ञान केंद्र (KVK) निर्देशिका">Agri Equipment Rental & Krishi Vigyan Kendra (KVK) Hub</h2>
+                    <p class="trans" data-en="Locate nearby Custom Hiring Centers (Tractors, Drones, Harvesters), cold storages, and ICAR KVK scientist centers." data-hi="अपने निकटतम कस्टम हायरिंग सेंटर (ट्रैक्टर, ड्रोन स्प्रेयर, कंबाइन) और कृषि विज्ञान केंद्रों से सीधा संपर्क करें।">Locate nearby Custom Hiring Centers (Tractors, Drones, Harvesters), cold storages, and ICAR KVK scientist centers.</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-panel-card">
+                <div class="filter-controls-row">
+                    <div class="filter-item">
+                        <label class="form-label trans" data-en="Center Type:" data-hi="केंद्र का प्रकार:">Center Type:</label>
+                        <select id="center-type-filter" class="form-control" onchange="loadAgriCenters()">
+                            <option value="All">All Facilities (सभी केंद्र)</option>
+                            <option value="KVK">Krishi Vigyan Kendra (KVK)</option>
+                            <option value="CHC_Rental">Custom Hiring / Machinery Rental</option>
+                            <option value="ColdStorage">Cold Storage & Seed Hubs</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Centers Grid -->
+            <div class="agri-centers-grid mt-3" id="agri-centers-list">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile Bottom Navigation Bar (For smartphone field use) -->
+    <nav class="mobile-bottom-nav">
+        <button class="mob-nav-btn active" onclick="switchTab('overview')" id="mob-overview">
+            <i class="fa-solid fa-house"></i>
+            <span class="trans" data-en="Home" data-hi="होम">Home</span>
+        </button>
+        <button class="mob-nav-btn" onclick="switchTab('crop-doctor')" id="mob-crop-doctor">
+            <i class="fa-solid fa-stethoscope"></i>
+            <span class="trans" data-en="Doctor" data-hi="डॉक्टर">Doctor</span>
+        </button>
+        <button class="mob-nav-btn" onclick="switchTab('soil-recommender')" id="mob-soil-recommender">
+            <i class="fa-solid fa-flask"></i>
+            <span class="trans" data-en="Soil" data-hi="मृदा">Soil</span>
+        </button>
+        <button class="mob-nav-btn" onclick="switchTab('mandi-tracker')" id="mob-mandi-tracker">
+            <i class="fa-solid fa-chart-line"></i>
+            <span class="trans" data-en="Mandi" data-hi="मंडी">Mandi</span>
+        </button>
+        <button class="mob-nav-btn" onclick="openChatModal()">
+            <i class="fa-solid fa-robot"></i>
+            <span class="trans" data-en="AI Chat" data-hi="एआई">AI Chat</span>
+        </button>
+    </nav>
+
+    <!-- ==================== KISAN AI ASSISTANT MODAL ==================== -->
+    <div class="modal-overlay" id="chat-modal">
+        <div class="modal-card chat-modal-card">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div>
+                        <h4 class="trans" data-en="Kisan AI Agri-Assistant" data-hi="किसान एआई सलाहकार">Kisan AI Agri-Assistant</h4>
+                        <span class="bot-status"><span class="online-indicator"></span> <span class="trans" data-en="Online • 24x7 Bilingual Voice & Chat" data-hi="उपलब्ध • 24x7 आवाज व चैट">Online • 24x7 Bilingual Voice & Chat</span></span>
+                    </div>
+                </div>
+                <div class="chat-header-btns">
+                    <button class="icon-tool-btn" onclick="clearChatHistory()" title="Clear Chat"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button class="icon-tool-btn" onclick="closeChatModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <!-- Chat Messages Body -->
+            <div class="chat-body" id="chat-messages">
+                <div class="chat-bubble bot-bubble">
+                    <div class="bubble-content">
+                        🌾 <strong class="trans" data-en="Namaste Farmer Friend!" data-hi="नमस्ते किसान भाई!">Namaste Farmer Friend!</strong><br>
+                        <span class="trans" data-en="I am your KrishiMitra AI Assistant. Ask me anything about crop diseases, pest remedies, fertilizer calculations, mandi prices, or government subsidies in English or हिन्दी." data-hi="मैं आपका कृषि मित्र एआई सहायक हूँ। आप मुझसे फसल के रोग, कीटनाशक की मात्रा, खाद का हिसाब, मंडी भाव या सरकारी योजनाओं के बारे में कुछ भी पूछ सकते हैं।">I am your KrishiMitra AI Assistant. Ask me anything about crop diseases, pest remedies, fertilizer calculations, mandi prices, or government subsidies in English or हिन्दी.</span>
+                    </div>
+                    <span class="bubble-time">Just now</span>
+                </div>
+            </div>
+
+            <!-- Quick Suggestion Pills -->
+            <div class="chat-suggestions-strip">
+                <button class="suggestion-chip" onclick="sendQuickQuery('How to control yellow rust in wheat?')">🌾 Wheat Yellow Rust</button>
+                <button class="suggestion-chip" onclick="sendQuickQuery('PM-Kisan 6000 registration process')">🏛️ PM-Kisan Status</button>
+                <button class="suggestion-chip" onclick="sendQuickQuery('Tomato leaf curl whitefly remedy')">🍅 Tomato Leaf Curl</button>
+                <button class="suggestion-chip" onclick="sendQuickQuery('Jeevamrit organic recipe for 1 acre')">🌿 Jeevamrit Formula</button>
+                <button class="suggestion-chip" onclick="sendQuickQuery('Fertilizer split dose for wheat')">🧪 Fertilizer Split Dose</button>
+            </div>
+
+            <!-- Chat Input Footer -->
+            <div class="chat-footer">
+                <button class="btn-voice-chat" id="btn-voice-toggle" onclick="toggleVoiceInputChat()" title="Speak in Voice (Hindi/English)">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <input type="text" id="chat-input-text" class="chat-input" placeholder="Type or click mic to speak your agricultural question..." onkeydown="if(event.key === 'Enter') sendChatMessage()">
+                <button class="btn-send-chat" onclick="sendChatMessage()" title="Send Message">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NEW FORUM POST MODAL ==================== -->
+    <div class="modal-overlay" id="new-post-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="trans" data-en="Post a Question to Agri-Community" data-hi="किसान चौपाल में अपनी समस्या पूछें">Post a Question to Agri-Community</h3>
+                <button class="btn-close-modal" onclick="closeNewPostModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="new-post-form" onsubmit="event.preventDefault(); submitNewForumPost();">
+                <div class="form-group">
+                    <label class="form-label trans" data-en="Question Title / Summary:" data-hi="समस्या का शीर्षक:">Question Title / Summary:</label>
+                    <input type="text" id="post-title" class="form-control" placeholder="e.g. White spots appearing under tomato leaves after heavy rains" required>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label class="form-label trans" data-en="Your Name:" data-hi="आपका नाम:">Your Name:</label>
+                        <input type="text" id="post-author" class="form-control" placeholder="e.g. Ramesh Patel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label trans" data-en="District & State:" data-hi="जिला व राज्य:">District & State:</label>
+                        <input type="text" id="post-location" class="form-control" placeholder="e.g. Anand, Gujarat" required>
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label class="form-label trans" data-en="Crop:" data-hi="फसल:">Crop:</label>
+                        <select id="post-crop" class="form-control">
+                            <option value="Wheat">Wheat (गेहूँ)</option>
+                            <option value="Rice / Paddy">Rice / Paddy (धान)</option>
+                            <option value="Cotton">Cotton (कपास)</option>
+                            <option value="Tomato">Tomato (टमाटर)</option>
+                            <option value="Potato">Potato (आलू)</option>
+                            <option value="Mustard">Mustard (सरसों)</option>
+                            <option value="Chili">Chili (मिर्च)</option>
+                            <option value="General">General Agriculture</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label trans" data-en="Problem Category:" data-hi="समस्या श्रेणी:">Problem Category:</label>
+                        <select id="post-category" class="form-control">
+                            <option value="Disease">Disease / Fungal Blight (रोग)</option>
+                            <option value="Pest">Insect Pest (कीट प्रकोप)</option>
+                            <option value="Fertilizer">Fertilizer & Soil (खाद व पोषण)</option>
+                            <option value="Machinery">Machinery / Equipment (यंत्र)</option>
+                            <option value="General">General Farming (सामान्य)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label trans" data-en="Detailed Description:" data-hi="विस्तृत विवरण:">Detailed Description:</label>
+                    <textarea id="post-content" class="form-control" rows="4" placeholder="Describe symptoms, how many days ago it started, any chemicals already sprayed, etc." required></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeNewPostModal()">Cancel</button>
+                    <button type="submit" class="btn btn-emerald"><i class="fa-solid fa-paper-plane"></i> <span class="trans" data-en="Submit Question" data-hi="सवाल पोस्ट करें">Submit Question</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main JS Application Controller -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
